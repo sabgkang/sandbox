@@ -1,0 +1,88 @@
+
+<!--https://docs.telerik.com/kendo-ui/controls/hybrid/listview/overview-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Kendo UI Snippet</title>
+
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.1.114/styles/kendo.default-v2.min.css" />
+
+  <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+  <script src="https://kendo.cdn.telerik.com/2020.1.114/js/kendo.all.min.js"></script>
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.1.114/styles/kendo.common.min.css">
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.1.114/styles/kendo.rtl.min.css">
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.1.114/styles/kendo.default.min.css">
+  <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.1.114/styles/kendo.mobile.all.min.css">
+  <script src="https://kendo.cdn.telerik.com/2020.1.114/js/angular.min.js"></script>
+  <script src="https://kendo.cdn.telerik.com/2020.1.114/js/jszip.min.js"></script>
+</head>
+
+<body>
+  <section data-role="layout" data-id="default">
+    <header data-role="header">
+      <div data-role="navbar">App</div>
+    </header>
+    
+    <!--View content will render here-->
+        
+    <footer data-role="footer">
+      <div data-role="tabstrip">
+        <a data-icon="home" href="#home">Home</a>
+        <a data-icon="about" href="#home1">About</a>       
+      </div>
+    </footer>
+  </section>
+      
+  <div id="home" data-role="view" data-layout="default">
+    Hello Mobile World Home! <br>
+    <a id="myButton"
+       data-role="button"
+       //data-actionsheet-context="1"
+       data-rel="actionsheet" href="#myActionSheet">Foo...</a>
+
+    <ul data-role="actionsheet" id="myActionSheet">
+        <li><a data-action="foo" style="font-weight: bold">Actions</a></li>
+        <li><a data-action="foo">Foo1</a></li>        
+        <li><a data-action="bar.baz">Bar</a></li>
+        <li><a data-action="bar.bax">Bar</a></li>        
+    </ul>   
+  </div>      
+
+  <div id="home1" data-role="view" data-layout="default">
+
+  </div> 
+      
+                
+  <script>
+    var app = new kendo.mobile.Application(document.body, {
+      transition: 'slide'
+    });
+    
+    
+    function foo(e) {
+      console.log("foo", e.context);
+        //e.context; // 1
+        //e.target; // $("#myButton")
+    }
+
+    var bar = {
+        baz: function(e) {
+          console.log("baz", e.context);
+            //e.context; // 1
+            //e.target; // $("#myButton")
+        },
+        bax: function(e) {
+          console.log("bax", e.context);
+        }
+    }    
+
+  </script>
+
+
+
+</body>
+
+</html>
