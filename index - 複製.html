@@ -22,24 +22,6 @@
   <link rel="stylesheet" href="css/loading.css" />
   <script src="js/loading.js"></script>
 
-<style>
-  input[type="file"] {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;
-}
-.custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-}
-  </style>
 </head>
 
 <body >
@@ -114,6 +96,7 @@
   <!--  **** 新增優惠券的畫面，包成一個大 DIV，方便 hide() 和 show() **** -->
   <div id="addCoupon" style="height: 600px; font-family:'Noto Sans TC'">
     <h2 id="couponNumber" value="00">新增優惠券 - C0000</h2>
+<!--    <button class="btn-blue" onclick="addNewCoach()" style="margin-bottom: 0">查詢/新增 老師</button>-->
     <div style="font-size: 20px;">
       <div class="couponLabel">優惠券內容</div> <input id="couponName" class="couponInput" type="text" placeholder="請輸入優惠券內容"><br>     
       <div class="couponLabel">有效期限</div> 
@@ -123,32 +106,15 @@
       <br>   
       <div class="couponLabel">其他說明</div> <input id="couponOtherDesc" class="couponInput" type="text" placeholder="請輸入其他說明"><br>
 
-      <form id ="picUpload" class="couponLabel" style="width: 800px">       
-        <label for="file-upload" class="custom-file-upload">
-            選擇圖片
-        </label>
-        <input id="file-upload" type="file" name="file" onchange="readURL(this);">  
-        
-        <!--        <label class="custom-file-upload" onclick="uploadToCloudinary()">-->
-        <label class="custom-file-upload" onclick="uploadToImgur()">
-          上傳
-        </label> 
-        
-        <span id="上傳訊息" style="margin-left:20px; color:gray">圖片尚未選擇</span>
-      </form> 
-            
-      <img id="上傳優惠券圖片" src="#" alt="" style="margin-left: 20px; margin-top: 10px;" /> 
-           
-           <br><br>
-           <br>
+      <br>
       <button class="btn-blue" onclick="couponConfirm()">確定</button>
       <button class="btn-red" onclick="couponCancel()">取消</button>
       <span style="margin-left: 150px">重複</span>
       <input id="repeatN" class="couponInput" style="width: 50px; text-align: right; padding-right: 10px;" type="text" value="1" placeholder="重複幾週">
       週(張)
       <br>
-    </div>      
-  </div> 
+    </div>       
+  </div>
   <!--  **** 新增優惠券的畫面:結束 **** -->
   
 
@@ -162,22 +128,7 @@
       <div class="couponLabelDetail">有效期限</div> <input id="couponDateDetail" class="couponInputDetail" type="text" placeholder="請輸入有效期限"><br>
 
       <div class="couponLabelDetail">其他說明</div> <input id="couponOtherDescDetail" class="couponInputDetail" type="text"><br>
-      <img id="優惠券圖片" src="" alt="" width="490" style="margin-left:20px">
-      
-      <form id ="picUpdate" class="couponLabel" style="width: 100%;margin-bottom:20px">       
-        <label for="file-update" class="custom-file-upload">
-            選擇圖片
-        </label>
-        <input id="file-update" type="file" name="file" onchange="readURL_detail(this);">  
-        
-        <!--        <label class="custom-file-upload" onclick="updateToCloudinary()">-->
-        <label class="custom-file-upload" onclick="updateToImgur()">
-          上傳
-        </label> 
 
-        <span id="上傳訊息-詳細" style="margin-left:20px; color:gray"></span>        
-      </form>
-      <br>      
       <br>
 
       <button class="btn-blue" onclick="backToHome()"><i class="fa fa-arrow-left"></i>&nbsp 回到 優惠券管理</button>
@@ -221,8 +172,6 @@
   <script src="js/firebase-ops.js"></script>
 
   <script>
-
-
     //   資料格式
     //    var memberData = [
     //      ["謝小憲", "Jacky",   "男", "1966-01-01", "09XXXXXXXX", "A1XXXXXXXX", "台北市"],
@@ -242,7 +191,7 @@
     //
     //    [ID, Name, Coach, date/time, Calories, Max.Persons, Assist, Fee, OtherDesc]
 //        var couponData = [
-//          ["C0002", "Inbody 100 元優惠券", "2020-02-28", "原價 350元", picURL],
+//          ["C0002", "Inbody 100 元優惠券", "2020-02-28", "原價 350元"],
 //          ["C0003", "乳清蛋白 100 元優惠券", "2020-02-28", "原價 400元"],
 //        ];
 //    
@@ -261,10 +210,6 @@
     var coachSet = [];
     var memberData = [];
     var couponNumber;
-    var userLineId;
-    
-    // picture URL reurn from Cloudinary in onSuccess()
-    var securePicUrl="";
 
     // 從 Firebase 資料庫取得 couponData, couponHistory, memberData, couponMember, coachSet, 
     // 定義在 js/firebase-ops.js 中
@@ -282,7 +227,7 @@
   <script type="text/javascript">
     var couponNum = 0; // Update from Database
     var inaddCoupon = false;
-    var version = " V2.0";
+    var version = " V1.0";
 
 //    $("#titleHeader").text("三峽運動中心 - 優惠券管理"+version);
     $("#titleHeader").text("優惠券管理"+version);    

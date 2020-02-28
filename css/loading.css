@@ -26,7 +26,7 @@
     line-height: 1.5;
     -webkit-font-feature-settings: 'tnum';
     font-feature-settings: 'tnum';
-    color: #ff4350; /* #1890ff; */
+    color: #1890ff;
     text-align: center;
     vertical-align: middle;
     -webkit-transition: -webkit-transform .3s cubic-bezier(.78, .14, .15, .86);
@@ -92,7 +92,7 @@
     display: block;
     width: 9px; 
     height: 9px;
-    background-color: #ff4350; /* #1890ff; */
+    background-color: #1890ff;
     border-radius: 100%;
     -webkit-transform: scale(.75);
     -ms-transform: scale(.75);
